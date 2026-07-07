@@ -11,6 +11,8 @@ services:
       - chat-network
     environment:
       - BACKEND_URL=http://backend:5001
+      - BACKEND_HOST=backend
+      - BACKEND_PORT=5001
     restart: unless-stopped
 
   backend:

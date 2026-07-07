@@ -1,0 +1,31 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: backend-deployment
+  namespace: chatapp
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: tejas164/chat-app:latest
+          ports:
+            - containerPort: 5001
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: MONGODB_URI
+              value: "mongodb://admin:password@mongo-db-svc.chatapp.svc.cluster.local:27017/chatApp?authSource=admin&retryWrites=true&w=majority"
+            - name: JWT_SECRET
+              value: "chatapp-super-secret-key"
+            - name: PORT
+              value: "5001"

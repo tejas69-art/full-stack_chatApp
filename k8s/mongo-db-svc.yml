@@ -1,13 +1,14 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: mongodb
-  namespace: chat-app
+  name: mongo-db-svc
+  namespace: chatapp
+  labels:
+    app: mongo-db
 spec:
   selector:
-    app: mongodb
+    app: mongo-db
   ports:
     - protocol: TCP
       port: 27017
       targetPort: 27017
-  type: ClusterIP
